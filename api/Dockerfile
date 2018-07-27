@@ -2,8 +2,11 @@ FROM alpine:3.8
 
 LABEL maintainer="Cristian Mello <cristianc.mello@gmail.com>"
 
-ARG APP_ENV=dev
+ARG APP_ENV=prod
 ENV APP_ENV ${APP_ENV}
+
+ARG NODE_ENV=prod
+ENV NODE_ENV ${NODE_ENV}
 
 ARG WORKDIR_SRC_DEFAULT=pixelbattle
 ENV WORKDIR_SRC_DEFAULT ${WORKDIR_SRC_DEFAULT}
@@ -22,8 +25,6 @@ RUN addgroup -g ${PGID} workspace && \
 RUN set -ex && \
     apk upgrade && \
     apk --update --no-cache add \
-    vim \
-    nano \
     bash \
     openssh-client \
     nginx \
@@ -31,6 +32,10 @@ RUN set -ex && \
     nodejs-npm \
     yarn \
     git
+
+RUN yarn global add \
+    express-generator \
+    nodemon
 
 # SSH RSA for Deploy
 # Make ssh dir
@@ -50,11 +55,13 @@ RUN set -ex && \
 #RUN chmod 400 -R /root/.ssh/
 
 # NGINX config
-COPY api/nginx/nginx.conf /etc/nginx/nginx.conf
+COPY api/nginx/nginx.conf.${APP_ENV} /etc/nginx/nginx.conf
 
 # HTTP errors
 COPY api/nginx/errors /usr/share/nginx/html/errors
 
+COPY entrypoint-api.sh /
+
 WORKDIR /public/${WORKDIR_SRC_DEFAULT}
 
-CMD ["nginx", "-g", "pid /tmp/nginx.pid; daemon off;"]
+ENTRYPOINT /entrypoint-api.sh ${APP_ENV}

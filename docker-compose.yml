@@ -2,19 +2,23 @@ version: '3.4'
 
 services:
   api:
-    container_name: dev-pixelbattle-api
-    image: dev-pixelbattle-api
+    container_name: pixelbattle-api
+    image: pixelbattle-api
     build:
         context: .
         dockerfile: api/Dockerfile
         args:
-            - APP_ENV=dev
+            - APP_ENV=prod
+            - NODE_ENV=prod
             - WORKDIR_SRC_DEFAULT=pixelbattle
     volumes:
         - "./src:/public"
-        - "./api/nginx/nginx.conf:/etc/nginx/nginx.conf"
+        - "./api/nginx/nginx.conf.${APP_ENV-prod}:/etc/nginx/nginx.conf"
         - "./api/nginx/errors:/usr/share/nginx/html/errors"
     tty: true
     restart: unless-stopped
     ports:
         - "8080:80"
+    environment:
+        - APP_ENV=${APP_ENV-prod}   # default value: prod
+        - NODE_ENV=${APP_ENV-prod}
