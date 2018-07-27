@@ -60,8 +60,8 @@ COPY api/nginx/nginx.conf.${APP_ENV} /etc/nginx/nginx.conf
 # HTTP errors
 COPY api/nginx/errors /usr/share/nginx/html/errors
 
-COPY entrypoint-api.sh /
+COPY ./api/entrypoint.sh /
 
 WORKDIR /public/${WORKDIR_SRC_DEFAULT}
 
-ENTRYPOINT /entrypoint-api.sh ${APP_ENV}
+ENTRYPOINT /entrypoint.sh ${APP_ENV}
