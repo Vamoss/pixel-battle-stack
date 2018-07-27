@@ -1,2 +1,3 @@
-# exception
-!pixelbattle/.gitignore
+# ignore all files
+*
+*.*
