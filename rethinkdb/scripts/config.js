@@ -1,5 +1,5 @@
 // config.js file
-require('dotenv').config({ path: '/scripts/.env'});
+require('dotenv').config({ path: '/.env'});
 
 module.exports = {
     db: process.env.DB_DATABASE,

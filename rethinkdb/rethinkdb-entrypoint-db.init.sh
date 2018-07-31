@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Get env vars
-export $(egrep -v '^#' /scripts/.env | xargs)
+export $(egrep -v '^#' /.env | xargs)
 
 db_healthcheck()
 {

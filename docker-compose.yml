@@ -39,7 +39,7 @@ services:
       - "./rethinkdb/data:/data:rw"
       - "./rethinkdb/rethinkdb-entrypoint-db.init.sh:/rethinkdb-entrypoint-db.init.sh"
       - "./rethinkdb/scripts:/scripts"
-      - "./rethinkdb/.env:/scripts/.env"
+      - "./shared-conf/env.example.dev:/.env"
     tty: true
     restart: unless-stopped
     ports:
