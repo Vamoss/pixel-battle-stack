@@ -28,6 +28,14 @@
 * **Docker v18.06.0-ce** or superior;
 * **Bash v4.3** or superior.
 
+## First clone the application repository
+
+* The path is `src`. Folder name must be `pixelbattle`:
+
+```
+git clone git@github.com:cristiancmello/pixelbattle.git src/
+```
+
 ## Local Development
 
 ### 'Dev' environment
@@ -60,3 +68,7 @@ When you start the database service, the `rethinkdb-entrypoint-db.init.sh` scrip
 * User:
   * **username**: `pixelbattle`
   * **password**: `pixelbattle`
+
+## Environment variables
+
+The `shared-conf/env.example.dev` file with environment variables can be used in the application to be hosted in `src/pixelbattle`.
