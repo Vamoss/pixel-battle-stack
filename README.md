@@ -52,6 +52,12 @@ APP_ENV=dev docker-compose up -d app rethinkdb
 APP_ENV=dev docker-compose up -d
 ```
 
+* Shell access:
+
+```sh
+docker-compose exec --user=workspace app bash
+```
+
 * Stop and down network interface:
 
 ```sh
