@@ -11,6 +11,9 @@ ENV NODE_ENV ${NODE_ENV}
 ARG WORKDIR_SRC_DEFAULT=pixelbattle
 ENV WORKDIR_SRC_DEFAULT ${WORKDIR_SRC_DEFAULT}
 
+ARG APP_GIT_BRANCH=aws
+ENV APP_GIT_BRANCH ${APP_GIT_BRANCH}
+
 # Non-Root User
 # Add a non-root user to prevent files being created with root permissions on host machine.
 ARG PUID=1000
@@ -61,6 +64,13 @@ COPY app/nginx/nginx.conf.${APP_ENV} /etc/nginx/nginx.conf
 COPY app/nginx/errors /usr/share/nginx/html/errors
 
 COPY ./app/entrypoint.sh /
+
+# Prepare PixelBattle app
+RUN if [ ${APP_ENV} = prod ]; then \
+    cd /home/ec2-user/src && \
+    git clone -b ${APP_GIT_BRANCH} --progress --verbose https://github.com/Vamoss/pixelbattle.git && \
+    yarn run build \
+;fi
 
 WORKDIR /public/${WORKDIR_SRC_DEFAULT}
 
