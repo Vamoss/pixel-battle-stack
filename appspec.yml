@@ -5,5 +5,5 @@ files:
     destination: /home/ec2-user
 hooks:
   ApplicationStart:
-    - location: chmod +x deploy.sh && ./deploy.sh
+    - location: deploy.sh
       runas: root
