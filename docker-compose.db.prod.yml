@@ -1,33 +1,6 @@
 version: '3.4'
 
 services:
-  app:
-    container_name: pixelbattle-app
-    image: pixelbattle-app
-    build:
-      context: .
-      dockerfile: app/Dockerfile
-      args:
-        - APP_ENV=prod
-        - NODE_ENV=prod
-        - WORKDIR_SRC_DEFAULT=pixelbattle
-        - APP_GIT_BRANCH=aws
-    volumes:
-      - "./src:/public"
-      - "./app/nginx/nginx.conf.${APP_ENV-prod}:/etc/nginx/nginx.conf"
-      - "./app/nginx/errors:/usr/share/nginx/html/errors"
-    tty: true
-    restart: unless-stopped
-    ports:
-      - "8080:80" # web server
-    depends_on:
-      - rethinkdb
-    links:
-      - rethinkdb:rethinkdb
-    environment:
-      - APP_ENV=${APP_ENV-prod}   # default value: prod
-      - NODE_ENV=${APP_ENV-prod}
-      - APP_GIT_BRANCH=${APP_GIT_BRANCH-aws}
   rethinkdb:
     container_name: pixelbattle-rethinkdb
     image: pixelbattle-rethinkdb
@@ -54,3 +27,5 @@ volumes:
     driver_opts:
       volumeType: "gp2" # SSD
       size: 8           # GB
+    external:
+      name: "pixelbattle-rethinkdb-data-vol"
