@@ -36,7 +36,7 @@ services:
       args:
         - APP_ENV=prod
     volumes:
-      - "./rethinkdb/data:/data:rw"
+      - "/data:/data:rw"
       - "./rethinkdb/rethinkdb-entrypoint-db.init.sh:/rethinkdb-entrypoint-db.init.sh"
       - "./rethinkdb/scripts:/scripts"
       - "./shared-conf/env.example.dev:/.env"
