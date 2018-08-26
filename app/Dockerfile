@@ -67,6 +67,7 @@ COPY ./app/entrypoint.sh /
 
 # Prepare PixelBattle app
 RUN if [ ${APP_ENV} = prod ]; then \
+    mkdir -p /public && \
     cd /public && \
     git clone -b ${APP_GIT_BRANCH} --progress --verbose https://github.com/Vamoss/pixelbattle.git && \
     yarn run build \
