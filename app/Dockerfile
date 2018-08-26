@@ -70,8 +70,7 @@ RUN if [ ${APP_ENV} = prod ]; then \
     mkdir -p /public && \
     cd /public && \
     git clone -b ${APP_GIT_BRANCH} --progress --verbose https://github.com/Vamoss/pixelbattle.git && \
-    cd ${WORKDIR_SRC_DEFAULT} && \
-    yarn run build \
+    cd ${WORKDIR_SRC_DEFAULT} \
 ;fi
 
 WORKDIR /public/${WORKDIR_SRC_DEFAULT}
