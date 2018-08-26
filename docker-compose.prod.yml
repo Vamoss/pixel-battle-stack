@@ -46,3 +46,12 @@ services:
       - "4321:8080"   # admin web-ui
       - "28015:28015" # client driver connections
       - "29015:29015" # intracluster driver connections
+volumes:
+  data-volume:
+    driver: "rexray/ebs"
+    name: "pixelbattle-rethinkdb-data-vol"
+    driver_opts:
+      volumeType: "gp2" # SSD
+      size: 8           # GB
+    external:
+      name: "pixelbattle-rethinkdb-data-vol"
