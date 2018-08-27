@@ -18,7 +18,8 @@ services:
     tty: true
     restart: unless-stopped
     ports:
-      - "8080:80" # web server
+      - "8080:80"   # web server (http)
+      - "4443:443"  # web server (https)
     depends_on:
       - rethinkdb
     links:
