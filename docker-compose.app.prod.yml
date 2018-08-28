@@ -6,7 +6,7 @@ services:
     image: pixelbattle-app
     build:
       context: .
-      dockerfile: app/Dockerfile
+      dockerfile: app/Dockerfile.prod
       args:
         - APP_ENV=prod
         - NODE_ENV=prod
