@@ -27,5 +27,5 @@ volumes:
     driver_opts:
       volumeType: "gp2" # SSD
       size: 8           # GB
-    #external:
-    #  name: "pixelbattle-rethinkdb-data-vol"
+    external:
+      name: "pixelbattle-rethinkdb-data-vol"
