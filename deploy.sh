@@ -1,6 +1,6 @@
 #!/bin/sh
 
-superviz_docker_cleanup()
+docker_cleanup()
 {
     echo "Removing all docker objects"
     {

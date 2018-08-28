@@ -13,7 +13,6 @@ services:
         - WORKDIR_SRC_DEFAULT=pixelbattle
         - APP_GIT_BRANCH=aws
     volumes:
-      - "./src:/public"
       - "./app/nginx/nginx.conf.${APP_ENV-prod}:/etc/nginx/nginx.conf"
       - "./app/nginx/errors:/usr/share/nginx/html/errors"
       - "/env/.env:/public/pixelbattle/.env"

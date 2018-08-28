@@ -45,7 +45,7 @@ http {
     gzip_types text/plain text/css application/json application/x-javascript text/xml application/xml application/xml+rss text/javascript;
 
     server {
-        server_name _;
+        server_name pixelbattle.com.br;
         return 302 https://$server_name$request_uri;
     }
 
