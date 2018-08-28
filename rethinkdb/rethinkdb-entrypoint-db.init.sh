@@ -17,7 +17,7 @@ db_healthcheck()
     done
 
     >&2 echo "Database is up - executing command"
-    node /scripts/createDb.js &
+    #node /scripts/createDb.js &
 }
 
 db_healthcheck ${DB_HOST} ${DB_PORT} &
