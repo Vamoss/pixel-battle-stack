@@ -86,9 +86,7 @@ RUN if [[ ${APP_ENV} == "prod" ]]; then \
     cd /public && \
     git clone -b ${APP_GIT_BRANCH} --progress --verbose https://github.com/Vamoss/pixelbattle.git && \
     cd ${WORKDIR_SRC_DEFAULT} && \
-    mv /public/.env .env && \
-    yarn && \
-    yarn run start \
+    mv /public/.env .env \
 ;fi
 
 
