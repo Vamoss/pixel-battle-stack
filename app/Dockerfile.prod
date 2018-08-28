@@ -78,18 +78,19 @@ COPY app/nginx/errors /usr/share/nginx/html/errors
 COPY ./app/entrypoint.sh /
 
 # Copy Env file
-COPY /env/.env /.env
+RUN mkdir -p /public
+COPY app/.env /public/.env
 
 # Prepare PixelBattle app
 RUN if [[ ${APP_ENV} == "prod" ]]; then \
-    mkdir -p /public && \
     cd /public && \
     git clone -b ${APP_GIT_BRANCH} --progress --verbose https://github.com/Vamoss/pixelbattle.git && \
     cd ${WORKDIR_SRC_DEFAULT} && \
-    mv /.env . && \
+    mv /public/.env .env && \
     yarn && \
     yarn run start \
 ;fi
+
 
 WORKDIR /public/${WORKDIR_SRC_DEFAULT}
 
