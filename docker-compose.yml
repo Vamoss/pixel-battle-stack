@@ -8,8 +8,8 @@ services:
       context: .
       dockerfile: app/Dockerfile
       args:
-        - APP_ENV=prod
-        - NODE_ENV=prod
+        - APP_ENV=dev
+        - NODE_ENV=dev
         - WORKDIR_SRC_DEFAULT=pixelbattle
     volumes:
       - "./src:/public"
@@ -25,8 +25,8 @@ services:
     links:
       - rethinkdb:rethinkdb
     environment:
-      - APP_ENV=${APP_ENV-prod}   # default value: prod
-      - NODE_ENV=${APP_ENV-prod}
+      - APP_ENV=${APP_ENV-dev}   # default value: dev
+      - NODE_ENV=${APP_ENV-dev}
 
   rethinkdb:
     container_name: pixelbattle-rethinkdb
