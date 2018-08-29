@@ -61,16 +61,16 @@ RUN yarn global add \
 #RUN chmod 400 -R /root/.ssh/
 
 # NGINX config
-RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
-  -keyout /etc/ssl/private/nginx-selfsigned.key \
-  -out /etc/ssl/certs/nginx-selfsigned.crt \
-  -subj "/C=BR/ST=Rio de Janeiro/L=Rio de Janeiro/O=PixelBattle/OU=IT/CN=_" && \
-  openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048
+#RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
+#  -keyout /etc/ssl/private/nginx-selfsigned.key \
+#  -out /etc/ssl/certs/nginx-selfsigned.crt \
+#  -subj "/C=BR/ST=Rio de Janeiro/L=Rio de Janeiro/O=PixelBattle/OU=IT/CN=_" && \
+#  openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048
 
-RUN mkdir -p /etc/nginx/snippets
+#RUN mkdir -p /etc/nginx/snippets
 COPY app/nginx/nginx.conf.${APP_ENV} /etc/nginx/nginx.conf
-COPY app/nginx/self-signed.conf /etc/nginx/snippets/self-signed.conf
-COPY app/nginx/ssl-params.conf /etc/nginx/snippets/ssl-params.conf
+#COPY app/nginx/self-signed.conf /etc/nginx/snippets/self-signed.conf
+#COPY app/nginx/ssl-params.conf /etc/nginx/snippets/ssl-params.conf
 
 # HTTP errors
 COPY app/nginx/errors /usr/share/nginx/html/errors
