@@ -11,7 +11,7 @@ services:
         - APP_ENV=prod
         - NODE_ENV=prod
         - WORKDIR_SRC_DEFAULT=pixelbattle
-        - APP_GIT_BRANCH=aws
+        - APP_GIT_BRANCH=master
     tty: true
     restart: unless-stopped
     ports:
@@ -20,4 +20,4 @@ services:
     environment:
       - APP_ENV=${APP_ENV-prod}   # default value: prod
       - NODE_ENV=${APP_ENV-prod}
-      - APP_GIT_BRANCH=${APP_GIT_BRANCH-aws}
+      - APP_GIT_BRANCH=${APP_GIT_BRANCH-master}
