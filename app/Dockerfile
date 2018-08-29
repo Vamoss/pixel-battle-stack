@@ -77,16 +77,6 @@ COPY app/nginx/errors /usr/share/nginx/html/errors
 
 COPY ./app/entrypoint.sh /
 
-# Prepare PixelBattle app
-RUN if [[ ${APP_ENV} == "prod" ]]; then \
-    mkdir -p /public && \
-    cd /public && \
-    git clone -b ${APP_GIT_BRANCH} --progress --verbose https://github.com/Vamoss/pixelbattle.git && \
-    cd ${WORKDIR_SRC_DEFAULT} && \
-    yarn && \
-    yarn run start \
-;fi
-
 WORKDIR /public/${WORKDIR_SRC_DEFAULT}
 
 ENTRYPOINT /entrypoint.sh ${APP_ENV}

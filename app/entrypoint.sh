@@ -10,7 +10,7 @@ case $APP_ENV in
         yarn dev-start &
         ;;
     "prod")
-        yarn start &
+        yarn run start &
         ;;
 esac
 
