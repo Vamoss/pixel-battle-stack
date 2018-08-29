@@ -14,6 +14,7 @@ module.exports = {
         db: process.env.DB_DATABASE,
         user: process.env.DB_ADMIN_USERNAME,
         password: process.env.DB_ADMIN_PASSWORD,
+        newPassword: process.env.DB_ADMIN_NEWPASSWORD,
         timeout: 10000
     },
     user: process.env.DB_USERNAME,
