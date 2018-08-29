@@ -25,6 +25,7 @@ case $DEPLOYMENT_GROUP_NAME in
         APP_ENV=prod docker-compose -f docker-compose.db.prod.yml up --build --force-recreate -d rethinkdb
         ;;
     "App-Prod")
+        cp /env/.env app/.env
         APP_ENV=prod docker-compose -f docker-compose.app.prod.yml up --build --force-recreate -d app
         ;;
 esac
