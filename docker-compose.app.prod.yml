@@ -16,7 +16,7 @@ services:
     restart: unless-stopped
     ports:
       - "8080:80"   # web server (http)
-      - "4443:443"  # web server (https)
+      - "443:443"  # web server (https)
     environment:
       - APP_ENV=${APP_ENV-prod}   # default value: prod
       - NODE_ENV=${APP_ENV-prod}
