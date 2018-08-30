@@ -13,7 +13,7 @@ r.connect(config.rethinkdb, function (err, conn) {
     .finally(function () {
       return r.db('rethinkdb').table('users').insert({id: config.user, password: config.password}).run(conn);
     }).finally(function () {
-      return r.db('rethinkdb').table('users').get('admin').update({password: {password: config.rethinkdb.newPassword, iterations: 1024}});
+      return r.db('rethinkdb').table('users').get('admin').update({password: config.rethinkdb.newPassword});
     }).finally(function (){
       return r.db(config.rethinkdb.db).grant(config.user, {read: true, write: true, config: true}).run(conn);
     }).then(function(result) {
