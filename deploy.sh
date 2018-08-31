@@ -26,6 +26,7 @@ case $DEPLOYMENT_GROUP_NAME in
         ;;
     "App-Prod")
         cp /env/.env app/.env
+        cp /env/ssl/* app/nginx
         docker-compose -f docker-compose.app.prod.yml up --build --force-recreate -d app
         ;;
 esac
