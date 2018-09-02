@@ -12,7 +12,7 @@ services:
         - NODE_ENV=prod
         - WORKDIR_SRC_DEFAULT=pixelbattle
         - APP_GIT_BRANCH=master
-        - GITHUB_REPO_URL=https://github.com/cristiancmello/pixelbattle.git
+        - GITHUB_REPO_URL=https://github.com/Vamoss/pixelbattle.git
     volumes:
       - "./app/datastore.json:/public/pixelbattle/datastore.json"
     tty: true
