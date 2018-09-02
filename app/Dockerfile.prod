@@ -8,6 +8,9 @@ ENV APP_ENV ${APP_ENV}
 ARG NODE_ENV=prod
 ENV NODE_ENV ${NODE_ENV}
 
+ARG GITHUB_REPO_URL=https://github.com/Vamoss/pixelbattle.git
+ENV GITHUB_REPO_URL ${GITHUB_REPO_URL}
+
 ARG WORKDIR_SRC_DEFAULT=pixelbattle
 ENV WORKDIR_SRC_DEFAULT ${WORKDIR_SRC_DEFAULT}
 
@@ -40,8 +43,8 @@ RUN set -ex && \
     vim \
     nano
 
-# Fix Npm DNS with CloudFlare's DNS (ISPs nameservers failure - https://status.npmjs.org/incidents/v22ffls5cd6h)
-RUN dig www.npmjs.com @1.1.1.1
+# Fix Npm DNS with Google's DNS (ISPs nameservers failure - https://status.npmjs.org/incidents/v22ffls5cd6h)
+RUN dig www.npmjs.com @8.8.8.8
 
 RUN yarn global add \
     express-generator \
@@ -90,7 +93,7 @@ COPY app/nginx/privkey.pem /etc/ssl/privkey.pem
 RUN if [[ ${APP_ENV} == "prod" ]]; then \
     mkdir -p /public && \
     cd /public && \
-    git clone -b ${APP_GIT_BRANCH} --progress --verbose https://github.com/Vamoss/pixelbattle.git && \
+    git clone -b ${APP_GIT_BRANCH} --progress --verbose ${GITHUB_REPO_URL} && \
     cd ${WORKDIR_SRC_DEFAULT} && \
     mv /public/.env .env && \
     yarn && \
