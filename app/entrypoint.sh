@@ -7,7 +7,7 @@ cd /public/pixelbattle
 
 case $APP_ENV in
     "dev")
-        yarn dev-start &
+        yarn dev &
         ;;
     "prod")
         yarn run start &
